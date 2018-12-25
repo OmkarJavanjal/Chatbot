@@ -1,0 +1,65 @@
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Angular Bot</a>
+    </div>
+  </div>
+</nav>
+
+<h1></h1>
+
+<div class="col-sm-12 col-md-4 col-lg-4 col-xs-12 hidden-xs hidden-sm">
+  
+       <div class='col-sm-12 col-md-12 col-xs-12 col-lg-12 text-center header-tag'>What you can ask me?</div>
+    <div class='col-sm-12 col-md-12 col-xs-12 col-lg-12' style="border:1px solid black;">
+          <marquee direction="up"scrolldelay='500'> 
+            <ul> 
+                <li>You can ask me to book a flight, room, car.</li>
+                <li>You van ask me about insurance.</li>
+                <li>Types of Insurance.</li>
+                <li>Yuo can have a small talk with me.</li>
+                <li>How can you help me?</li>
+                <li>How are you?</li>
+                <li>How you work?</li>
+                <li>And much more!</li>
+            </ul>
+          </marquee>
+    </div>
+    <div class='col-sm-12 col-md-12 col-xs-12 col-lg-12 chatboatWidth'>
+        <img src="https://angularfirebase.com/images/dialogflow-angular-demo.gif" alt="angular chatbot demo with DialogFlow" class="content-image loading" data-was-processed="true">
+    </div>
+</div>
+
+<div class='col-sm-12 col-md-8 col-lg-8 col-xs-12 getMessage'>
+<div id='shide' #scrollMe style='height:450px; max-height:450px; border:1px solid;overflow-y:auto;margin-bottom:20px'>
+<div style='padding-top:20px;'>
+<ng-container *ngFor="let message of messages | async">
+
+  <div class=" message" id="messages" [ngClass]="{ 'from': message.sentBy === 'bot',
+                                    'to':   message.sentBy === 'user' }">
+    <a href='#' *ngIf="message.sentBy === 'bot'"> 
+        <span class="glyphicon glyphicon-user"></span>
+    </a> 
+    {{ message.content }}
+   <span *ngIf="message.sentBy === 'user'" class="glyphicon glyphicon-user"></span>
+
+  </div>
+ </ng-container>
+</div>
+</div>
+ <form>
+    <div class="form-group">
+     <label for="usr" class=''>Enter Your Query:</label>
+    <input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text" 
+        name="txtSpeechSearchMovieName" id="txtSpeechSearchMovieName" value=""
+        placeholder="How can I help you?" > 
+    </div>
+    <button (click)="sendMessage()" class='btn btn-success'>Send</button>
+
+<button class="btn btn-info" name="btnActivateSpeechSearchMovie" id="btnActivateSpeechSearchMovie" (click)="toggleStartStop()"
+>{{buttonText}}</button>
+</form>
+</div>
+
+
